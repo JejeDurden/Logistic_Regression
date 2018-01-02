@@ -8,8 +8,8 @@ import sys
 
 
 def describe():
-    if os.path.exists('data.csv'):
-        data = pd.read_csv("data.csv")
+    if os.path.exists('dataset_train.csv'):
+        data = pd.read_csv("dataset_train.csv")
     else:
         print ("There is no data.csv file. Please add one to the same directory as " + sys.argv[0])
         sys.exit()
