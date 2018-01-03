@@ -23,6 +23,7 @@ def describe(argv):
     seventyfives = ["75%"]
     maxes = ["max"]
     n = len(data.columns)
+
     for i in range(n):
         counts.append(get_count(data, i))
         means.append(get_mean(data, i))
@@ -32,6 +33,7 @@ def describe(argv):
         fifties.append(get_percentile(data, i, 50))
         seventyfives.append(get_percentile(data, i, 75))
         maxes.append(get_max(data, i))
+    
     labels = list(data.columns.values)
     labels.insert(0, "  ")
     print (tabulate([counts, means, stds, mins, twentyfives, fifties, seventyfives, maxes], labels, numalign="right"))

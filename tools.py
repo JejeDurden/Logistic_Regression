@@ -34,20 +34,17 @@ def get_max(data, column):
 
 def get_percentile(data, column, percentile):
     data_cpy = copy.deepcopy(data)
+    count = get_count(data_cpy, column)    
     data_cpy.sort_values(by=data.columns.values[column], inplace=True)
     data_cpy = data_cpy.reset_index(drop=True)
-    count = get_count(data_cpy, column)
     indice = (percentile / 100) * count
     if indice.is_integer():
         for index, row in data_cpy.iterrows():
             if index == indice - 1:
-                if index < count - 1 and index != 0: 
-                    return ((row[column] + data_cpy.iloc[index + 1, column]) / 2)
-                else :
-                    return row[column]
+                return ((row[column] + data_cpy.iloc[index + 1, column]) / 2)
                     
     else:
-        indice = int(indice)
+        indice = round(indice)
         for index, row in data_cpy.iterrows():
             if index == indice:
                 return row[column]
